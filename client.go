@@ -19,7 +19,7 @@ func ConvertFromFloat(f float64) int64 {
 type CryptoClient interface {
 	//Public
 	GetAccountCurrencies() ([]string, error)
-	Tick(Currencyfrom, CurrencyTo string) (Tick, error)
+	Tick(CurrencyFrom, CurrencyTo string) (Tick, error)
 	GetOrderBook(CurrencyFrom, CurrencyTo string) (OrderBook, error)
 	GetRecentTrades(CurrencyFrom, CurrencyTo string, historyAmount int) (RecentTrades, error)
 	//Private
@@ -27,9 +27,9 @@ type CryptoClient interface {
 	PlaceMarketOrder(CurrencyFrom, CurrencyTo string, amount int64) (OrderDetails, error)
 	CancelOrder(OrderID int) error
 	GetOrderDetails(OrderID int) (OrderDetails, error)
-	GetOpenOrders()
-	GetBalance(Currency string)
-	GetBalances()
+	GetOpenOrders() (OrdersDetails, error)
+	GetBalance(Currency string) (AccountBalance, error)
+	GetBalances() (AccountBalances, error)
 	GetDigitalCurrencyDepositAddress(Currency string) (CurrencyAddress, error)
 	WithdrawCurrency(Currency, to string, amount int64) error
 	//Custom
@@ -91,13 +91,26 @@ type Trade struct {
 type OrdersDetails []OrderDetails
 
 //OrderDetails encapsulates the details of an order
-type OrderDetails struct{}
+type OrderDetails struct {
+	PrimaryCurrency   string
+	SecondaryCurrency string
+	OrderID           int64
+	Created           time.Time
+	//OrderSide Bid/Ask
+	OrderSide string
+	//OrderType Limit/Market
+	OrderType string
+}
 
 //AccountBalances is a list of all available AccountBalance(s)
 type AccountBalances []AccountBalance
 
 //AccountBalance is used to show the amount available in a specific account
-type AccountBalance struct{}
+type AccountBalance struct {
+	Currency         string
+	AvailableBalance int64
+	TotalBalance     int64
+}
 
 //CurrencyAddress is the address to recieve cryptocurrency in
 type CurrencyAddress struct {
