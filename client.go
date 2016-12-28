@@ -23,8 +23,10 @@ type CryptoClient interface {
 	GetOrderBook(CurrencyFrom, CurrencyTo string) (OrderBook, error)
 	GetRecentTrades(CurrencyFrom, CurrencyTo string, historyAmount int) (RecentTrades, error)
 	//Private
-	PlaceLimitOrder(CurrencyFrom, CurrencyTo string, amount int64, price int64) (OrderDetails, error)
-	PlaceMarketOrder(CurrencyFrom, CurrencyTo string, amount int64) (OrderDetails, error)
+	PlaceLimitBuyOrder(CurrencyFrom, CurrencyTo string, amount int64, price int64) (PlacedOrder, error)
+	PlaceMarketBuyOrder(CurrencyFrom, CurrencyTo string, amount int64) (PlacedOrder, error)
+	PlaceLimitSellOrder(CurrencyFrom, CurrencyTo string, amount int64, price int64) (PlacedOrder, error)
+	PlaceMarketSellOrder(CurrencyFrom, CurrencyTo string, amount int64) (PlacedOrder, error)
 	CancelOrder(OrderID int) error
 	GetOrderDetails(OrderID int) (OrderDetails, error)
 	GetOpenOrders() (OrdersDetails, error)
@@ -96,10 +98,18 @@ type OrderDetails struct {
 	SecondaryCurrency string
 	OrderID           int64
 	Created           time.Time
+	VolumeOrdered     int64
+	VolumeFilled      int64
+	Price             int64
 	//OrderSide Bid/Ask
 	OrderSide string
 	//OrderType Limit/Market
 	OrderType string
+}
+
+//PlacedOrder is a basic order which contains the order id from a successful request
+type PlacedOrder struct {
+	OrderID int
 }
 
 //AccountBalances is a list of all available AccountBalance(s)
