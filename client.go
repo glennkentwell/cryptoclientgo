@@ -18,7 +18,8 @@ func ConvertFromFloat(f float64) int64 {
 //CryptoClient is the generic crypto currency client
 type CryptoClient interface {
 	//Public
-	GetAccountCurrencies() ([]string, error)
+	GetPrimaryCurrencies() ([]string, error)
+	GetSecondaryCurrencies() ([]string, error)
 	Tick(CurrencyFrom, CurrencyTo string) (Tick, error)
 	GetOrderBook(CurrencyFrom, CurrencyTo string) (OrderBook, error)
 	GetRecentTrades(CurrencyFrom, CurrencyTo string, historyAmount int) (RecentTrades, error)
@@ -32,7 +33,7 @@ type CryptoClient interface {
 	GetOpenOrders() (OrdersDetails, error)
 	GetBalance(Currency string) (AccountBalance, error)
 	GetBalances() (AccountBalances, error)
-	GetDigitalCurrencyDepositAddress(Currency string) (CurrencyAddress, error)
+	GetPrimaryCurrencyDepositAddress(Currency string) (CurrencyAddress, error)
 	WithdrawCurrency(Currency, to string, amount int64) error
 	//Custom
 	GetTransactionCost(CurrencyFrom, CurrencyTo string) (Cost, error)
