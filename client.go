@@ -85,8 +85,8 @@ type Trades []Trade
 
 //Trade is a single trade between two currencies
 type Trade struct {
-	PrimaryAmount   int64
-	SecondaryAmount int64
+	Amount int64
+	Price  int64
 }
 
 //OrdersDetails is a list of singular OrderDetails
