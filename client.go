@@ -16,8 +16,8 @@ type AbstractClient interface {
 	Tick(CurrencyFrom, CurrencyTo string) (Tick, error)
 	GetOrderBook(CurrencyFrom, CurrencyTo string) (OrderBook, error)
 	GetRecentTrades(CurrencyFrom, CurrencyTo string, historyAmount int) (RecentTrades, error)
-	ExpectedMarketValueBuy(PrimaryCurrency, SecondaryCurrency string, amountOfToCurrency int64) (int64, error)
-	ExpectedMarketValueSell(PrimaryCurrency, SecondaryCurrency string, amountOfFromCurrency int64) (int64, error)
+	//ExpectedMarketValueBuy(PrimaryCurrency, SecondaryCurrency string, amountOfToCurrency int64) (int64, error)
+	//ExpectedMarketValueSell(PrimaryCurrency, SecondaryCurrency string, amountOfFromCurrency int64) (int64, error)
 	//Private
 	PlaceLimitBuyOrder(CurrencyFrom, CurrencyTo string, amount int64, price int64) (PlacedOrder, error)
 	PlaceMarketBuyOrder(CurrencyFrom, CurrencyTo string, amount int64) (PlacedOrder, error)
