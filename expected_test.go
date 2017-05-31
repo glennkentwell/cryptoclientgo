@@ -16,11 +16,11 @@ func TestGetBest(t *testing.T) {
 
 func TestGetSell(t *testing.T) {
 	o := getOrders()
-	amt, err := o.getBestSell(4 * Multiplier)
+	amt, err := o.getBestSell(5 * Multiplier)
 	if err != nil {
 		t.Error("Err not nil")
 	}
-	want := (5*4 + 1*2) * Multiplier
+	want := (5*4 + 2*1) * Multiplier
 	if amt != want {
 		t.Errorf("Amt:\t%+v\nWant:\t%+v", amt, want)
 	}

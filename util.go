@@ -10,5 +10,5 @@ func ConvertToFloat(i int64) float64 {
 
 //ConvertFromFloat converts an float64 to the corresponding int64
 func ConvertFromFloat(f float64) int64 {
-	return int64(f) * Multiplier
+	return int64(f * float64(Multiplier))
 }
