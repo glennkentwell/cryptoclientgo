@@ -1,7 +1,13 @@
 package cryptoclientgo
 
+import "math/big"
+
 //Multiplier is the multiplier used when dealing with amounts or prices, to avoid floating point errors
 const Multiplier = int64(100000000)
+
+var bigMultiplier = big.NewInt(Multiplier)
+
+const halfMultiplier = Multiplier / 2
 
 //ConvertToFloat converts an int64 to the corresponding float64
 func ConvertToFloat(i int64) float64 {
