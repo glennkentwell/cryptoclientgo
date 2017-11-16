@@ -25,7 +25,7 @@ type AbstractClient interface {
 	PlaceMarketSellOrder(CurrencyFrom, CurrencyTo string, amount int64) (PlacedOrder, error)
 	CancelOrder(OrderID int) error
 	GetOrderDetails(OrderID int) (OrderDetails, error)
-	GetOpenOrders() (OrdersDetails, error)
+	GetOpenOrders(string, string) (OrdersDetails, error)
 	GetBalance(Currency string) (AccountBalance, error)
 	GetBalances() (AccountBalances, error)
 	GetPrimaryCurrencyDepositAddress(Currency string) (CurrencyAddress, error)
