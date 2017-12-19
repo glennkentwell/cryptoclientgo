@@ -20,14 +20,6 @@ type Tick struct {
 	LastPrice               int64
 }
 
-type TickFloat struct {
-	PrimaryCurrency			string
-	SecondaryCurrency		string
-	CurrentHighestBidPrice	float64
-	CurrentLowestOfferPrice float64
-	LastPrice				float64
-}
-
 //OrderBook gets the current open orders
 type OrderBook struct {
 	PrimaryCurrency   string
